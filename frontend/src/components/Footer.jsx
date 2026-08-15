@@ -34,7 +34,12 @@ function ContactRow({ item }) {
       <span className="contact-row__label">{item.label}</span>
       <a className="contact-row__value" href={item.href} target="_blank" rel="noreferrer">
         {item.value}
-        <span className="contact-row__ext">↗</span>
+        <span className="contact-row__ext">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="13" x2="13" y2="3" />
+            <polyline points="6,3 13,3 13,10" />
+          </svg>
+        </span>
       </a>
       <button
         className={`copy-btn ${copied ? 'copy-btn--done' : ''}`}

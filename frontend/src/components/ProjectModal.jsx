@@ -33,7 +33,10 @@ export default function ProjectModal({ project, onClose }) {
     <div className={`project-modal${visible ? ' project-modal--open' : ''}`} onClick={close}>
       <div className="project-modal__inner" onClick={(e) => e.stopPropagation()}>
         <button className="project-modal__close" onClick={close} aria-label="Close">
-          ×
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <line x1="3" y1="3" x2="13" y2="13" />
+            <line x1="13" y1="3" x2="3" y2="13" />
+          </svg>
         </button>
 
         <div className="project-modal__viewer">

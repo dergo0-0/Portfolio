@@ -51,7 +51,12 @@ export default function CaseFile({ id, name, tagline, desc, tech, status, link =
             </span>
           ))}
         </div>
-        <span className="case__arrow">↗</span>
+        <span className="case__arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="13" x2="13" y2="3" />
+            <polyline points="6,3 13,3 13,10" />
+          </svg>
+        </span>
       </div>
     </article>
   );
