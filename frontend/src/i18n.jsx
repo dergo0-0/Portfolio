@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LanguageContext } from './i18n-context';
 
+const BASE = import.meta.env.BASE_URL;
+
 const translations = {
   uk: {
     nav: {
@@ -58,8 +60,8 @@ const translations = {
           tech: ['React', 'Adaptive UI', 'Desktop / Mobile'],
           status: 'done',
           images: [
-            { src: '/projects/vector-main.png', label: 'Дизайн' },
-            { src: '/projects/vector-logo.png', label: 'Логотип' },
+            { src: `${BASE}projects/vector-main.png`, label: 'Дизайн' },
+            { src: `${BASE}projects/vector-logo.png`, label: 'Логотип' },
           ],
         },
         {
@@ -70,8 +72,8 @@ const translations = {
           tech: ['Mobile-first', 'UX/UI', 'Responsive'],
           status: 'done',
           images: [
-            { src: '/projects/scalaris-main.png', label: 'Дизайн' },
-            { src: '/projects/scalaris-logo.png', label: 'Логотип' },
+            { src: `${BASE}projects/scalaris-main.png`, label: 'Дизайн' },
+            { src: `${BASE}projects/scalaris-logo.png`, label: 'Логотип' },
           ],
         },
       ],
@@ -155,8 +157,8 @@ const translations = {
           tech: ['React', 'Adaptive UI', 'Desktop / Mobile'],
           status: 'done',
           images: [
-            { src: '/projects/vector-main.png', label: 'Design' },
-            { src: '/projects/vector-logo.png', label: 'Logo' },
+            { src: `${BASE}projects/vector-main.png`, label: 'Design' },
+            { src: `${BASE}projects/vector-logo.png`, label: 'Logo' },
           ],
         },
         {
@@ -167,8 +169,8 @@ const translations = {
           tech: ['Mobile-first', 'UX/UI', 'Responsive'],
           status: 'done',
           images: [
-            { src: '/projects/scalaris-main.png', label: 'Design' },
-            { src: '/projects/scalaris-logo.png', label: 'Logo' },
+            { src: `${BASE}projects/scalaris-main.png`, label: 'Design' },
+            { src: `${BASE}projects/scalaris-logo.png`, label: 'Logo' },
           ],
         },
       ],
