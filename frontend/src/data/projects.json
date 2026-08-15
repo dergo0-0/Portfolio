@@ -1,0 +1,30 @@
+[
+  {
+    "id": "01",
+    "title": "Нейромережа для аналізу цін",
+    "tags": ["Next.js", "Python", "PostgreSQL"],
+    "status": "live",
+    "link": "#"
+  },
+  {
+    "id": "02",
+    "title": "Платформа бронювання студій",
+    "tags": ["React", "Node.js", "Stripe"],
+    "status": "live",
+    "link": "#"
+  },
+  {
+    "id": "03",
+    "title": "Внутрішній дашборд логістики",
+    "tags": ["Vue", "Supabase"],
+    "status": "progress",
+    "link": "#"
+  },
+  {
+    "id": "04",
+    "title": "Редизайн e-commerce вітрини",
+    "tags": ["Astro", "Tailwind"],
+    "status": "archived",
+    "link": "#"
+  }
+]
