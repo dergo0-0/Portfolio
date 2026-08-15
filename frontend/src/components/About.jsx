@@ -24,7 +24,7 @@ export default function About() {
               ))}
               <p>
                 {t('about.teamBefore')}{' '}
-                <a className="about__link" href="https://oleksii.dev" target="_blank" rel="noreferrer">
+                <a className="about__link" href="https://ttjelky.github.io/portfolio/" target="_blank" rel="noreferrer">
                   {t('about.teamName')}
                 </a>{' '}
                 {t('about.teamAfter')}

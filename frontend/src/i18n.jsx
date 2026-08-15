@@ -57,6 +57,10 @@ const translations = {
           desc: 'Desktop та mobile адаптація зроблена мною. Близько 80% фронтенду — на мені.',
           tech: ['React', 'Adaptive UI', 'Desktop / Mobile'],
           status: 'done',
+          images: [
+            { src: '/projects/vector-main.png', label: 'Дизайн' },
+            { src: '/projects/vector-logo.png', label: 'Логотип' },
+          ],
         },
         {
           id: '02',
@@ -65,6 +69,10 @@ const translations = {
           desc: 'Основний UX/UI зроблений та адаптований мною від мобільного до десктопу. У складі проєкту — концепт Nike Run Club.',
           tech: ['Mobile-first', 'UX/UI', 'Responsive'],
           status: 'done',
+          images: [
+            { src: '/projects/scalaris-main.png', label: 'Дизайн' },
+            { src: '/projects/scalaris-logo.png', label: 'Логотип' },
+          ],
         },
       ],
       concept: {
@@ -145,6 +153,10 @@ const translations = {
           desc: 'Desktop and mobile adaptation done by me. About 80% of the frontend is on my shoulders.',
           tech: ['React', 'Adaptive UI', 'Desktop / Mobile'],
           status: 'done',
+          images: [
+            { src: '/projects/vector-main.png', label: 'Design' },
+            { src: '/projects/vector-logo.png', label: 'Logo' },
+          ],
         },
         {
           id: '02',
@@ -153,6 +165,10 @@ const translations = {
           desc: 'The core UX/UI was designed and adapted by me from mobile to desktop. Includes the Nike Run Club concept.',
           tech: ['Mobile-first', 'UX/UI', 'Responsive'],
           status: 'done',
+          images: [
+            { src: '/projects/scalaris-main.png', label: 'Design' },
+            { src: '/projects/scalaris-logo.png', label: 'Logo' },
+          ],
         },
       ],
       concept: {

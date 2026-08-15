@@ -1,12 +1,19 @@
 import GlareHover from './GlareHover';
 import { useLang } from '../i18n-context';
 
-export default function CaseFile({ id, name, tagline, desc, tech, status, link }) {
+export default function CaseFile({ id, name, tagline, desc, tech, status, link = '#contact', images, onProjectClick }) {
   const { t } = useLang();
   const statusLabel = t(`projects.status.${status}`) || status;
 
+  const handleClick = (e) => {
+    if (images && images.length && onProjectClick) {
+      e.preventDefault();
+      onProjectClick({ id, name, tagline, images });
+    }
+  };
+
   return (
-    <article className="case">
+    <article className="case" onClick={handleClick}>
       <GlareHover
         width="100%"
         height="100%"
