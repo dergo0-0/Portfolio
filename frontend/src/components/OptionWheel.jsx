@@ -94,9 +94,8 @@ const OptionWheel = ({
     const els = itemRefs.current;
     const n = cfg.count;
     const mirror = cfg.side === 'right' ? -1 : 1;
-    const step = (2 * Math.PI) / Math.max(n, 1);
-    const wheelH = rootRef.current?.clientHeight || 600;
-    const R = Math.max(120, wheelH / 2 - 130);
+    const tiltRad = (cfg.tilt * Math.PI) / 180;
+    const R = tiltRad > 0.0005 ? cfg.rowH / tiltRad : 0;
     const vals = valsRef.current;
     for (let i = 0; i < n; i++) {
       const el = els[i];
@@ -106,24 +105,20 @@ const OptionWheel = ({
         d = ((d % n) + n) % n;
         if (d > n / 2) d -= n;
       }
-      let ang = d * step;
-      if (ang > Math.PI) ang -= 2 * Math.PI;
-      if (ang < -Math.PI) ang += 2 * Math.PI;
-      const front = (Math.cos(ang) + 1) / 2;
       const dist = Math.abs(d);
       let x = 0;
       let y = d * cfg.rowH;
       let rot = 0;
       if (R > 0) {
+        const ang = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, d * tiltRad));
         y = R * Math.sin(ang);
-        x = -mirror * R * (1 - Math.cos(ang)) * Math.min(cfg.curve, 1);
+        x = -mirror * R * (1 - Math.cos(ang)) * cfg.curve;
         rot = (mirror * ang * 180) / Math.PI;
       }
-      const scale = (0.6 + 0.4 * front).toFixed(3);
-      const transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg) scale(${scale})`;
-      const zIndex = String(Math.round(front * 100));
-      const opacity = (cfg.minOpacity + (1 - cfg.minOpacity) * front).toFixed(4);
-      const blurPx = cfg.blur > 0 && front > 0.08 ? ((1 - front) * cfg.blur).toFixed(2) : 'none';
+      const transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg)`;
+      const zIndex = String(Math.max(0, 100 - dist * 10));
+      const opacity = String(Math.max(cfg.minOpacity, 1 - dist * cfg.fade));
+      const blurPx = cfg.blur > 0 ? (dist * cfg.blur).toFixed(2) : 'none';
       const filter = blurPx === 'none' ? 'none' : `blur(${blurPx}px)`;
       const p = Math.max(0, 1 - Math.min(dist, 1)).toFixed(4);
       const prev = vals[i];
@@ -187,19 +182,14 @@ const OptionWheel = ({
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    let lastWheel = 0;
     const onWheel = e => {
       e.preventDefault();
       const cfg = cfgRef.current;
-      const now = performance.now();
-      if (now - lastWheel > 30) {
-        lastWheel = now;
-        const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
-        const step = Math.max(-1, Math.min(1, delta / cfg.rowH));
-        applyTarget(targetRef.current + step, false);
-      }
+      const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
+      const step = Math.max(-1, Math.min(1, delta / cfg.rowH));
+      applyTarget(targetRef.current + step, false);
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
-      wheelTimerRef.current = setTimeout(() => applyTarget(targetRef.current, true), 130);
+      wheelTimerRef.current = setTimeout(() => applyTarget(targetRef.current, true), 140);
     };
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => {

@@ -83,7 +83,7 @@ export default function Certificates() {
               defaultSelected={wheelDefault}
               onChange={handleWheelChange}
               textColor="rgba(151, 144, 125, 0.3)"
-              activeColor="#F97316"
+              activeColor="#e8512c"
               side="left"
               fontSize={3.4}
               spacing={1.8}
