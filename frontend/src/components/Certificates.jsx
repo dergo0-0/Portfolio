@@ -29,12 +29,15 @@ export default function Certificates() {
   const handleChange = useCallback((i) => {
     if (i === indexRef.current) return;
     window.clearTimeout(timerRef.current);
-    setFading(true);
     timerRef.current = window.setTimeout(() => {
+      if (i === indexRef.current) return;
       indexRef.current = i;
-      setIndex(i);
-      setFading(false);
-    }, 180);
+      setFading(true);
+      window.setTimeout(() => {
+        setIndex(i);
+        setFading(false);
+      }, 120);
+    }, 260);
   }, []);
 
   useEffect(() => {
