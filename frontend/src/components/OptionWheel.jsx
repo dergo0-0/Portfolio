@@ -118,9 +118,9 @@ const OptionWheel = ({
       const transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg)`;
       const zIndex = String(Math.max(0, 100 - dist * 10));
       const opacity = String(Math.max(cfg.minOpacity, 1 - dist * cfg.fade));
-      const blurPx = cfg.blur > 0 ? (dist * cfg.blur).toFixed(2) : 'none';
+      const blurPx = cfg.blur > 0 && dist < 4.5 ? (Math.round(dist * cfg.blur * 2) / 2).toFixed(2) : 'none';
       const filter = blurPx === 'none' ? 'none' : `blur(${blurPx}px)`;
-      const p = Math.max(0, 1 - Math.min(dist, 1)).toFixed(4);
+      const p = (Math.round(Math.max(0, 1 - Math.min(dist, 1)) * 20) / 20).toFixed(3);
       const prev = vals[i];
       if (!prev || prev.transform !== transform || prev.zIndex !== zIndex) {
         el.style.transform = transform;
