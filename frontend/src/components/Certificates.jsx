@@ -95,8 +95,6 @@ export default function Certificates() {
               inset={60}
               loop
               draggable
-              soundUrl={`${import.meta.env.BASE_URL}sounds/click-soft.wav`}
-              soundVolume={0.5}
             />
           </div>
         </Reveal>
