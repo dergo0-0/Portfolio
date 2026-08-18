@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import ClickSpark from './components/ClickSpark';
 import ColorBends from './components/ColorBends';
+import SectionBoundary from './components/SectionBoundary';
 import './styles/index.css';
 
 const About = lazy(() => import('./components/About'));
@@ -36,16 +37,28 @@ export default function App() {
       <main>
         <Hero />
         <Marquee />
-        <Suspense fallback={null}>
-          <About />
-          <Stack />
-          <Certificates />
-          <CaseList />
-        </Suspense>
+        <SectionBoundary>
+          <Suspense fallback={null}>
+            <About />
+            <Stack />
+          </Suspense>
+        </SectionBoundary>
+        <SectionBoundary>
+          <Suspense fallback={null}>
+            <Certificates />
+          </Suspense>
+        </SectionBoundary>
+        <SectionBoundary>
+          <Suspense fallback={null}>
+            <CaseList />
+          </Suspense>
+        </SectionBoundary>
       </main>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      <SectionBoundary>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      </SectionBoundary>
     </ClickSpark>
   );
 }
