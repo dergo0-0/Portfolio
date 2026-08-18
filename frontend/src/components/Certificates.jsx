@@ -6,7 +6,7 @@ import { useLang } from '../i18n-context';
 
 function LogoBadge({ logo, accent }) {
   return (
-    <svg className="cert-card__logo" width="62" height="62" viewBox="0 0 56 56" fill="none">
+    <svg className="cert-card__logo" width="60" height="60" viewBox="0 0 56 56" fill="none">
       <rect width="56" height="56" rx="14" fill={accent} opacity="0.14" />
       <rect x="1" y="1" width="54" height="54" rx="13" stroke={accent} strokeOpacity="0.45" />
       <text x="28" y="36" textAnchor="middle" fontFamily="'Sivar Pro','Russo One',sans-serif" fontSize="16" fill={accent} fontWeight="700">
