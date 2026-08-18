@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import About from './components/About';
 import Stack from './components/Stack';
+import Certificates from './components/Certificates';
 import CaseList from './components/CaseList';
 import Footer from './components/Footer';
 import ClickSpark from './components/ClickSpark';
@@ -35,6 +36,7 @@ export default function App() {
         <Marquee />
         <About />
         <Stack />
+        <Certificates />
         <CaseList />
       </main>
       <Footer />
