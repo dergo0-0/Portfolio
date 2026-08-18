@@ -880,7 +880,7 @@ body::after {
 .contact-icon:hover {
   border-color: var(--signal);
   color: var(--signal);
-  background: rgba(232, 81, 44, 0.08);
+  background: var(--ink-2);
   transform: translateY(-3px);
 }
 
