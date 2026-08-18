@@ -4,35 +4,17 @@ import SplitText from './SplitText';
 import Reveal from './Reveal';
 import { useLang } from '../i18n-context';
 
-const ICONS = {
-  '01': (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
-      <path d="M9 20V12l5-4 5 4v8" stroke="#e8512c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 20v-5h4v5" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+function LogoBadge({ logo, accent }) {
+  return (
+    <svg className="cert-card__logo" width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <rect width="56" height="56" rx="14" fill={accent} opacity="0.14" />
+      <rect x="1" y="1" width="54" height="54" rx="13" stroke={accent} strokeOpacity="0.45" />
+      <text x="28" y="36" textAnchor="middle" fontFamily="'Sivar Pro','Russo One',sans-serif" fontSize="16" fill={accent} fontWeight="700">
+        {logo}
+      </text>
     </svg>
-  ),
-  '02': (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
-      <circle cx="11" cy="11" r="3" stroke="#e8512c" strokeWidth="1.5" />
-      <circle cx="17" cy="11" r="3" stroke="#e8512c" strokeWidth="1.5" />
-      <path d="M9 20c0-3.3 2.2-4 5-4s5 .7 5 4" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-  '03': (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
-      <path d="M14 8l2 4 4.5.7-3.2 3.2.8 4.5L14 17.5l-4.1 2.9.8-4.5L7.5 12.7 12 12z" stroke="#e8512c" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
-  ),
-  '04': (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
-      <path d="M10 20h8M14 8v8M10 12h8" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-};
+  );
+}
 
 export default function Certificates() {
   const { t } = useLang();
@@ -74,10 +56,10 @@ export default function Certificates() {
               items={data.wheel}
               defaultSelected={0}
               onChange={handleChange}
-              textColor="rgba(151, 144, 125, 0.28)"
-              activeColor="#4f46e5"
+              textColor="rgba(151, 144, 125, 0.3)"
+              activeColor="#e8512c"
               side="left"
-              fontSize={3.4}
+              fontSize={3.2}
               spacing={1.8}
               curve={1}
               tilt={7}
@@ -85,7 +67,7 @@ export default function Certificates() {
               fade={0.28}
               minOpacity={0.02}
               smoothing={220}
-              inset={70}
+              inset={60}
               loop
             />
           </div>
@@ -93,18 +75,25 @@ export default function Certificates() {
 
         <Reveal className="certificates__panel" stagger={0.12} rotate={0} threshold={0.1}>
           <div className={`cert-card${fading ? ' cert-card--fading' : ''}`}>
-            <div className="cert-card__icon">
-              {ICONS[current.id] || ICONS['04']}
-            </div>
-            <div className="cert-card__header">
-              <h3 className="cert-card__name">{current.name}</h3>
-            </div>
-            <div className="cert-card__sub">
-              <span>{current.issuer}</span>
-              <span className="cert-card__dot">•</span>
-              <span>{current.year}</span>
+            <div className="cert-card__top">
+              <LogoBadge logo={current.logo} accent="#e8512c" />
+              <div className="cert-card__head">
+                <h3 className="cert-card__name">{current.name}</h3>
+                <div className="cert-card__sub">
+                  <span>{current.issuer}</span>
+                  <span className="cert-card__dot">•</span>
+                  <span>{current.year}</span>
+                </div>
+              </div>
             </div>
             <p className="cert-card__desc">{current.desc}</p>
+            <div className="cert-card__tech">
+              {current.tech.map((item) => (
+                <span className="chip chip--small" key={item}>
+                  {item}
+                </span>
+              ))}
+            </div>
             <div className="cert-card__line" />
             <a className="cert-card__open" href={`${import.meta.env.BASE_URL}certificates/${current.fileName}`} target="_blank" rel="noreferrer">
               {t('certificates.open')}
