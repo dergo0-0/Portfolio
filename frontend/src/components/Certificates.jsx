@@ -39,20 +39,25 @@ export default function Certificates() {
   const data = t('certificates');
   const [index, setIndex] = useState(0);
   const [fading, setFading] = useState(false);
+  const timerRef = useRef(null);
+  const indexRef = useRef(0);
 
   const current = data.list[index] || data.list[0];
 
   const handleChange = useCallback((i) => {
-    if (i === index) return;
+    if (i === indexRef.current) return;
+    window.clearTimeout(timerRef.current);
     setFading(true);
-    setTimeout(() => {
+    timerRef.current = window.setTimeout(() => {
+      indexRef.current = i;
       setIndex(i);
       setFading(false);
-    }, 220);
-  }, [index]);
+    }, 180);
+  }, []);
 
   useEffect(() => {
     setFading(false);
+    return () => window.clearTimeout(timerRef.current);
   }, []);
 
   return (
@@ -76,10 +81,10 @@ export default function Certificates() {
               spacing={1.8}
               curve={1}
               tilt={7}
-              blur={3.5}
-              fade={0.32}
+              blur={2}
+              fade={0.28}
               minOpacity={0.02}
-              smoothing={280}
+              smoothing={220}
               inset={70}
               loop
             />

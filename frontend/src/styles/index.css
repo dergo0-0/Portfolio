@@ -1171,7 +1171,6 @@ body::after {
   font-family: var(--font-head);
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.35);
 }
 
 .certificates__panel {

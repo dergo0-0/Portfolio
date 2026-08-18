@@ -1,14 +1,16 @@
+import { lazy, Suspense } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
-import About from './components/About';
-import Stack from './components/Stack';
-import Certificates from './components/Certificates';
-import CaseList from './components/CaseList';
-import Footer from './components/Footer';
 import ClickSpark from './components/ClickSpark';
 import ColorBends from './components/ColorBends';
 import './styles/index.css';
+
+const About = lazy(() => import('./components/About'));
+const Stack = lazy(() => import('./components/Stack'));
+const Certificates = lazy(() => import('./components/Certificates'));
+const CaseList = lazy(() => import('./components/CaseList'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
@@ -34,12 +36,16 @@ export default function App() {
       <main>
         <Hero />
         <Marquee />
-        <About />
-        <Stack />
-        <Certificates />
-        <CaseList />
+        <Suspense fallback={null}>
+          <About />
+          <Stack />
+          <Certificates />
+          <CaseList />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </ClickSpark>
   );
 }

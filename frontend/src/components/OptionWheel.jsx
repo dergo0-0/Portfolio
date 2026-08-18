@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect, memo } from 'react';
 import './OptionWheel.css';
 
 const DEFAULT_ITEMS = [
@@ -290,4 +290,4 @@ const OptionWheel = ({
   );
 };
 
-export default OptionWheel;
+export default memo(OptionWheel);
