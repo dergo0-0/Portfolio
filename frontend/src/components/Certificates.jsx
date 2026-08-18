@@ -1,20 +1,58 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import OptionWheel from './OptionWheel';
 import SplitText from './SplitText';
 import Reveal from './Reveal';
 import { useLang } from '../i18n-context';
 
+const ICONS = {
+  '01': (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
+      <path d="M9 20V12l5-4 5 4v8" stroke="#e8512c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 20v-5h4v5" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  '02': (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
+      <circle cx="11" cy="11" r="3" stroke="#e8512c" strokeWidth="1.5" />
+      <circle cx="17" cy="11" r="3" stroke="#e8512c" strokeWidth="1.5" />
+      <path d="M9 20c0-3.3 2.2-4 5-4s5 .7 5 4" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  '03': (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
+      <path d="M14 8l2 4 4.5.7-3.2 3.2.8 4.5L14 17.5l-4.1 2.9.8-4.5L7.5 12.7 12 12z" stroke="#e8512c" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  ),
+  '04': (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="#e8512c" opacity="0.12" />
+      <path d="M10 20h8M14 8v8M10 12h8" stroke="#e8512c" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+};
+
 export default function Certificates() {
   const { t } = useLang();
   const data = t('certificates');
   const [index, setIndex] = useState(0);
-  const [iframeKey, setIframeKey] = useState(0);
+  const [fading, setFading] = useState(false);
 
   const current = data.list[index] || data.list[0];
 
   const handleChange = useCallback((i) => {
-    setIndex(i);
-    setIframeKey((k) => k + 1);
+    if (i === index) return;
+    setFading(true);
+    setTimeout(() => {
+      setIndex(i);
+      setFading(false);
+    }, 220);
+  }, [index]);
+
+  useEffect(() => {
+    setFading(false);
   }, []);
 
   return (
@@ -31,16 +69,16 @@ export default function Certificates() {
               items={data.wheel}
               defaultSelected={0}
               onChange={handleChange}
-              textColor="rgba(151, 144, 125, 0.35)"
-              activeColor="#f0ecdf"
+              textColor="rgba(151, 144, 125, 0.28)"
+              activeColor="#4f46e5"
               side="left"
               fontSize={3.4}
-              spacing={1.7}
+              spacing={1.8}
               curve={1}
               tilt={7}
-              blur={4}
-              fade={0.3}
-              minOpacity={0}
+              blur={3.5}
+              fade={0.32}
+              minOpacity={0.02}
               smoothing={280}
               inset={70}
               loop
@@ -49,38 +87,27 @@ export default function Certificates() {
         </Reveal>
 
         <Reveal className="certificates__panel" stagger={0.12} rotate={0} threshold={0.1}>
-          <div className="cert-card" key={current.id}>
-            <div className="cert-card__head">
-              <span className="cert-card__id">{current.id}</span>
-              <span className="stamp stamp--done">certified</span>
+          <div className={`cert-card${fading ? ' cert-card--fading' : ''}`}>
+            <div className="cert-card__icon">
+              {ICONS[current.id] || ICONS['04']}
             </div>
-            <h3 className="cert-card__name">{current.name}</h3>
+            <div className="cert-card__header">
+              <h3 className="cert-card__name">{current.name}</h3>
+            </div>
+            <div className="cert-card__sub">
+              <span>{current.issuer}</span>
+              <span className="cert-card__dot">•</span>
+              <span>{current.year}</span>
+            </div>
             <p className="cert-card__desc">{current.desc}</p>
-            <div className="cert-card__meta">
-              <span className="cert-card__issuer">{current.issuer}</span>
-              <span className="cert-card__year">{current.year}</span>
-            </div>
-            <div className="cert-card__tech">
-              {current.tech.map((item) => (
-                <span className="chip chip--small" key={item}>
-                  {item}
-                </span>
-              ))}
-            </div>
-            <a className="cert-card__open" href={current.file} target="_blank" rel="noreferrer">
+            <div className="cert-card__line" />
+            <a className="cert-card__open" href={`${import.meta.env.BASE_URL}certificates/${current.fileName}`} target="_blank" rel="noreferrer">
               {t('certificates.open')}
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="13" x2="13" y2="3" />
                 <polyline points="6,3 13,3 13,10" />
               </svg>
             </a>
-            <iframe
-              key={iframeKey}
-              className="cert-card__preview"
-              src={`${import.meta.env.BASE_URL}certificates/${current.fileName}`}
-              title={current.name}
-              loading="lazy"
-            />
           </div>
         </Reveal>
       </div>
