@@ -858,8 +858,34 @@ body::after {
   color: var(--paper-dim);
 }
 
-.contact-list {
+.contact-icons {
   margin-top: 46px;
+  display: flex;
+  gap: 18px;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--paper-dim);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-icon:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+  background: rgba(232, 81, 44, 0.08);
+  transform: translateY(-3px);
+}
+
+.contact-list {
+  margin-top: 30px;
   max-width: 760px;
   border-bottom: 1px solid var(--line);
 }
