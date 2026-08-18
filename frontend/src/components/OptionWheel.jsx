@@ -34,7 +34,6 @@ const OptionWheel = ({
   inset = 80,
   loop = false,
   draggable = true,
-  renderItem = null,
   className = ''
 }) => {
   const rootRef = useRef(null);
@@ -260,9 +259,9 @@ const OptionWheel = ({
       onPointerCancel={handlePointerEnd}
       onKeyDown={handleKeyDown}
     >
-      {items.map((item, index) => (
+      {items.map((label, index) => (
         <div
-          key={typeof item === 'string' ? `${item}-${index}` : `${item?.id ?? index}-${index}`}
+          key={`${label}-${index}`}
           ref={el => {
             itemRefs.current[index] = el;
           }}
@@ -271,7 +270,7 @@ const OptionWheel = ({
           className={`option-wheel__item${selectedIndex === index ? ' option-wheel__item--selected' : ''}`}
           onClick={() => handleItemClick(index)}
         >
-          {renderItem ? renderItem(item, index) : item}
+          {label}
         </div>
       ))}
     </div>

@@ -1078,54 +1078,9 @@ body::after {
 }
 
 .certificates__wheel .option-wheel__item {
-  white-space: normal;
-}
-
-.cert-wheel-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: var(--panel-glass);
-  -webkit-backdrop-filter: var(--panel-blur);
-  backdrop-filter: var(--panel-blur);
-  border: 1px solid var(--line);
-  transition: border-color 0.2s ease;
-  width: max-content;
-  max-width: 320px;
-}
-
-.option-wheel__item--selected .cert-wheel-card {
-  border-color: var(--signal);
-}
-
-.cert-wheel-card__info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.cert-wheel-card__name {
   font-family: var(--font-head);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--paper);
-  line-height: 1.2;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cert-wheel-card__sub {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--paper-dim);
-  white-space: nowrap;
+  letter-spacing: 0.03em;
 }
 
 .certificates__panel {
