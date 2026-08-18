@@ -7,7 +7,6 @@ const translations = {
   uk: {
     nav: {
       name: 'СЕРГІЙ ДЕЙНЕГА',
-      status: 'відкритий до роботи',
       contact: 'контакти',
     },
     hero: {
@@ -125,13 +124,6 @@ const translations = {
           ],
         },
       ],
-      concept: {
-        tag: 'концепт → Scalaris',
-        name: 'Nike Run Club',
-        tagline: 'Веб-застосунок, що збирає людей разом',
-        desc: 'Люди бачать одне одного на мапі та пропонують спільну прогулянку. Зроблено за 5 днів у межах проєкту Scalaris.',
-        tech: ['Map', 'Real-time', '5 днів'],
-      },
     },
     contact: {
       label: 'контакти',
@@ -152,7 +144,6 @@ const translations = {
   en: {
     nav: {
       name: 'SERHII DEINEHA',
-      status: 'open to work',
       contact: 'contact',
     },
     hero: {
@@ -270,13 +261,6 @@ const translations = {
           ],
         },
       ],
-      concept: {
-        tag: 'concept → Scalaris',
-        name: 'Nike Run Club',
-        tagline: 'A web app that brings people together',
-        desc: 'People see each other on a live map and offer a shared walk. Built in 5 days as part of the Scalaris project.',
-        tech: ['Map', 'Real-time', '5 days'],
-      },
     },
     contact: {
       label: 'contact',

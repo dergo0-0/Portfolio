@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import OptionWheel from './OptionWheel';
 import SplitText from './SplitText';
 import Reveal from './Reveal';
@@ -24,6 +24,14 @@ export default function Certificates() {
   const timerRef = useRef(null);
   const indexRef = useRef(0);
 
+  const wheelItems = useMemo(() => {
+    const reps = 5;
+    const base = data.wheel;
+    return Array.from({ length: reps }).flatMap(() => base);
+  }, [data.wheel]);
+
+  const wheelDefault = Math.floor(wheelItems.length / 2) + Math.floor(data.list.length / 2);
+
   const current = data.list[index] || data.list[0];
 
   const handleChange = useCallback((i) => {
@@ -39,6 +47,13 @@ export default function Certificates() {
       }, 120);
     }, 260);
   }, []);
+
+  const handleWheelChange = useCallback(
+    (i) => {
+      handleChange(i % data.list.length);
+    },
+    [handleChange, data.list.length],
+  );
 
   const step = useCallback(
     (dir) => {
@@ -64,9 +79,9 @@ export default function Certificates() {
         <Reveal className="certificates__wheel-wrap" stagger={0.1} rotate={0} threshold={0.1}>
           <div className="certificates__wheel">
             <OptionWheel
-              items={data.wheel}
-              defaultSelected={0}
-              onChange={handleChange}
+              items={wheelItems}
+              defaultSelected={wheelDefault}
+              onChange={handleWheelChange}
               textColor="rgba(151, 144, 125, 0.3)"
               activeColor="#F97316"
               side="left"

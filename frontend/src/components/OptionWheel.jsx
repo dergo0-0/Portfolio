@@ -50,6 +50,7 @@ const OptionWheel = ({
   const wheelTimerRef = useRef(null);
   const dragRef = useRef(null);
   const dragMovedRef = useRef(false);
+  const valsRef = useRef([]);
   const audioRef = useRef(null);
   const audioUrlRef = useRef('');
   const lastTickRef = useRef(0);
@@ -96,6 +97,7 @@ const OptionWheel = ({
     const step = (2 * Math.PI) / Math.max(n, 1);
     const wheelH = rootRef.current?.clientHeight || 600;
     const R = Math.max(120, wheelH / 2 - 130);
+    const vals = valsRef.current;
     for (let i = 0; i < n; i++) {
       const el = els[i];
       if (!el) continue;
@@ -118,11 +120,21 @@ const OptionWheel = ({
         rot = (mirror * ang * 180) / Math.PI;
       }
       const scale = (0.6 + 0.4 * front).toFixed(3);
-      el.style.transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg) scale(${scale})`;
-      el.style.zIndex = String(Math.round(front * 100));
-      el.style.opacity = String((cfg.minOpacity + (1 - cfg.minOpacity) * front).toFixed(4));
-      el.style.filter = cfg.blur > 0 ? `blur(${((1 - front) * cfg.blur).toFixed(2)}px)` : 'none';
-      el.style.setProperty('--ow-p', Math.max(0, 1 - Math.min(dist, 1)).toFixed(4));
+      const transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg) scale(${scale})`;
+      const zIndex = String(Math.round(front * 100));
+      const opacity = (cfg.minOpacity + (1 - cfg.minOpacity) * front).toFixed(4);
+      const blurPx = cfg.blur > 0 && front > 0.08 ? ((1 - front) * cfg.blur).toFixed(2) : 'none';
+      const filter = blurPx === 'none' ? 'none' : `blur(${blurPx}px)`;
+      const p = Math.max(0, 1 - Math.min(dist, 1)).toFixed(4);
+      const prev = vals[i];
+      if (!prev || prev.transform !== transform || prev.zIndex !== zIndex) {
+        el.style.transform = transform;
+        el.style.zIndex = zIndex;
+      }
+      if (!prev || prev.opacity !== opacity) el.style.opacity = opacity;
+      if (!prev || prev.filter !== filter) el.style.filter = filter;
+      if (!prev || prev.p !== p) el.style.setProperty('--ow-p', p);
+      vals[i] = { transform, zIndex, opacity, filter, p };
     }
 
     rafRef.current = settled ? null : requestAnimationFrame(runFrame);

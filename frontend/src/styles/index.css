@@ -193,26 +193,6 @@ body::after {
   gap: 22px;
 }
 
-.nav-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-dim);
-}
-
-.nav-status__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--signal);
-  box-shadow: 0 0 0 0 rgba(232, 81, 44, 0.5);
-  animation: pulse-dot 2s infinite;
-}
-
 @keyframes pulse-dot {
   0% { box-shadow: 0 0 0 0 rgba(232, 81, 44, 0.5); }
   70% { box-shadow: 0 0 0 8px rgba(232, 81, 44, 0); }
@@ -858,123 +838,6 @@ body::after {
   padding: 5px 9px;
 }
 
-/* concept banner (Nike Run Club → Scalaris) */
-.concept-card {
-  position: relative;
-  margin-top: 26px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  padding: 40px 38px 34px;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 8px 32px;
-  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%);
-  transition: border-color 0.25s ease;
-}
-
-.concept-card:hover {
-  border-color: var(--gold);
-}
-
-.concept-card__tape {
-  position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  width: 130px;
-  height: 22px;
-  background: rgba(240, 236, 223, 0.18);
-  border-left: 1px dashed var(--line-strong);
-  border-right: 1px dashed var(--line-strong);
-}
-
-.concept-card__tag {
-  grid-column: 1 / -1;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.concept-card__tag::before {
-  content: '';
-  width: 30px;
-  height: 2px;
-  background: var(--gold);
-}
-
-.concept-card__name {
-  font-family: var(--font-head);
-  font-size: clamp(30px, 3.5vw, 42px);
-  text-transform: uppercase;
-  color: var(--paper);
-  line-height: 1.05;
-  text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.3);
-}
-
-.concept-card__tagline {
-  grid-column: 1;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--signal);
-}
-
-.concept-card__desc {
-  grid-column: 1;
-  max-width: 660px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--paper-dim);
-}
-
-.concept-card__doodle {
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: end;
-  align-self: start;
-  width: min(220px, 100%);
-  opacity: 0.9;
-}
-
-.concept-card__route {
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 4 8;
-  animation: route-dash 3s linear infinite;
-}
-
-@keyframes route-dash {
-  to { stroke-dashoffset: -24; }
-}
-
-.concept-card__pin {
-  fill: var(--signal);
-}
-
-.concept-card__pin--go {
-  fill: var(--gold);
-}
-
-.concept-card__tech {
-  grid-column: 2;
-  grid-row: 3 / span 2;
-  align-self: end;
-  justify-self: end;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  max-width: 260px;
-}
-
 /* ---------- FOOTER ---------- */
 .footer {
   padding: 100px 48px 40px;
@@ -1328,7 +1191,6 @@ body::after {
 .contact-row,
 .footer__bottom,
 .case,
-.concept-card,
 .cert-card {
   background: var(--panel-glass);
   -webkit-backdrop-filter: var(--panel-blur);
@@ -1385,9 +1247,6 @@ body::after {
   .nav {
     padding: 14px 22px;
   }
-  .nav-status {
-    display: none;
-  }
   .nav-right {
     gap: 12px;
   }
@@ -1443,21 +1302,6 @@ body::after {
     min-height: 0;
   }
 
-  .concept-card {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .concept-card__doodle {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: start;
-  }
-  .concept-card__tech {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: start;
-  }
-
   .contact-row {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1483,8 +1327,7 @@ body::after {
   .marquee__track {
     animation: none;
   }
-  .hero-scroll__line::after,
-  .nav-status__dot {
+  .hero-scroll__line::after {
     animation: none;
   }
 }

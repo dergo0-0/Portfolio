@@ -11,10 +11,6 @@ export default function Nav() {
       </a>
 
       <div className="nav-right">
-        <div className="nav-status">
-          <span className="nav-status__dot" />
-          <span>{t('nav.status')}</span>
-        </div>
         <button
           className="lang-toggle"
           type="button"
