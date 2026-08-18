@@ -4,15 +4,29 @@ import SplitText from './SplitText';
 import Reveal from './Reveal';
 import { useLang } from '../i18n-context';
 
-function LogoBadge({ logo, accent }) {
+function LogoBadge({ logo, accent, size = 56 }) {
   return (
-    <svg className="cert-card__logo" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <svg className="cert-card__logo" width={size} height={size} viewBox="0 0 56 56" fill="none">
       <rect width="56" height="56" rx="14" fill={accent} opacity="0.14" />
       <rect x="1" y="1" width="54" height="54" rx="13" stroke={accent} strokeOpacity="0.45" />
       <text x="28" y="36" textAnchor="middle" fontFamily="'Sivar Pro','Russo One',sans-serif" fontSize="16" fill={accent} fontWeight="700">
         {logo}
       </text>
     </svg>
+  );
+}
+
+function WheelCard({ cert }) {
+  return (
+    <div className="cert-wheel-card">
+      <div className="cert-wheel-card__logo">
+        <LogoBadge logo={cert.logo} accent="#e8512c" size={36} />
+      </div>
+      <div className="cert-wheel-card__info">
+        <h4 className="cert-wheel-card__name">{cert.name}</h4>
+        <span className="cert-wheel-card__sub">{cert.issuer} · {cert.year}</span>
+      </div>
+    </div>
   );
 }
 
@@ -25,10 +39,9 @@ export default function Certificates() {
   const indexRef = useRef(0);
 
   const wheelItems = useMemo(() => {
-    const reps = 5;
-    const base = data.wheel;
-    return Array.from({ length: reps }).flatMap(() => base);
-  }, [data.wheel]);
+    const reps = 4;
+    return Array.from({ length: reps }).flatMap(() => data.list);
+  }, [data.list]);
 
   const wheelDefault = Math.floor(wheelItems.length / 2) + Math.floor(data.list.length / 2);
 
@@ -68,6 +81,10 @@ export default function Certificates() {
     return () => window.clearTimeout(timerRef.current);
   }, []);
 
+  const renderWheelItem = useCallback((cert) => (
+    <WheelCard cert={cert} />
+  ), []);
+
   return (
     <section className="certificates" id="certificates">
       <div className="section-label">
@@ -85,16 +102,17 @@ export default function Certificates() {
               textColor="rgba(151, 144, 125, 0.3)"
               activeColor="#e8512c"
               side="left"
-              fontSize={3.4}
-              spacing={1.8}
+              fontSize={1.6}
+              spacing={3.6}
               curve={2}
               tilt={6}
-              blur={1.5}
-              fade={0.21}
+              blur={1.2}
+              fade={0.25}
               smoothing={240}
-              inset={60}
+              inset={20}
               loop
               draggable
+              renderItem={renderWheelItem}
             />
           </div>
         </Reveal>
