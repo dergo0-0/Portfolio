@@ -1158,6 +1158,41 @@ body::after {
   border-radius: 0;
   background: transparent;
   overflow: hidden;
+  display: none;
+}
+
+.cert-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.cert-nav__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--paper);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+.cert-nav__btn:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+  background: rgba(232, 81, 44, 0.1);
+}
+
+.cert-nav__count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dim);
 }
 
 .certificates__wheel {
@@ -1301,6 +1336,15 @@ body::after {
 }
 
 /* ---------- RESPONSIVE ---------- */
+@media (min-width: 1025px) {
+  .certificates__wheel-wrap {
+    display: block;
+  }
+  .cert-nav {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .about__grid {
     grid-template-columns: 1fr;

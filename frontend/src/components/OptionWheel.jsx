@@ -175,14 +175,19 @@ const OptionWheel = ({
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
+    let lastWheel = 0;
     const onWheel = e => {
       e.preventDefault();
       const cfg = cfgRef.current;
-      const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
-      const step = Math.max(-1, Math.min(1, delta / cfg.rowH));
-      applyTarget(targetRef.current + step, false);
+      const now = performance.now();
+      if (now - lastWheel > 30) {
+        lastWheel = now;
+        const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
+        const step = Math.max(-1, Math.min(1, delta / cfg.rowH));
+        applyTarget(targetRef.current + step, false);
+      }
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
-      wheelTimerRef.current = setTimeout(() => applyTarget(targetRef.current, true), 140);
+      wheelTimerRef.current = setTimeout(() => applyTarget(targetRef.current, true), 130);
     };
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => {

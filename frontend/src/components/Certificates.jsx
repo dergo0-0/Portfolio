@@ -40,6 +40,14 @@ export default function Certificates() {
     }, 260);
   }, []);
 
+  const step = useCallback(
+    (dir) => {
+      const n = data.list.length;
+      handleChange((indexRef.current + dir + n) % n);
+    },
+    [data.list.length, handleChange],
+  );
+
   useEffect(() => {
     setFading(false);
     return () => window.clearTimeout(timerRef.current);
@@ -66,9 +74,9 @@ export default function Certificates() {
               spacing={1.8}
               curve={2}
               tilt={6}
-              blur={4}
+              blur={1.5}
               fade={0.21}
-              smoothing={350}
+              smoothing={240}
               inset={60}
               loop
               draggable
@@ -107,6 +115,22 @@ export default function Certificates() {
                 <polyline points="6,3 13,3 13,10" />
               </svg>
             </a>
+          </div>
+
+          <div className="cert-nav">
+            <button className="cert-nav__btn" type="button" onClick={() => step(-1)} aria-label="Previous">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="10,13 5,8 10,3" />
+              </svg>
+            </button>
+            <span className="cert-nav__count">
+              {String(index + 1).padStart(2, '0')} / {data.list.length.toString().padStart(2, '0')}
+            </span>
+            <button className="cert-nav__btn" type="button" onClick={() => step(1)} aria-label="Next">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6,13 11,8 6,3" />
+              </svg>
+            </button>
           </div>
         </Reveal>
       </div>
