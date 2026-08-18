@@ -31,18 +31,18 @@ export default function Certificates() {
               items={data.wheel}
               defaultSelected={0}
               onChange={handleChange}
-              textColor="rgba(151, 144, 125, 0.55)"
+              textColor="rgba(151, 144, 125, 0.35)"
               activeColor="#f0ecdf"
               side="left"
-              fontSize={2}
-              spacing={1.5}
+              fontSize={3.4}
+              spacing={1.7}
               curve={1}
               tilt={7}
-              blur={1.2}
-              fade={0.18}
-              minOpacity={0.03}
-              smoothing={260}
-              inset={40}
+              blur={4}
+              fade={0.3}
+              minOpacity={0}
+              smoothing={280}
+              inset={70}
               loop
             />
           </div>
