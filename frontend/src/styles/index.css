@@ -1163,8 +1163,8 @@ body::after {
 .certificates__wheel {
   position: relative;
   height: 760px;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .certificates__wheel .option-wheel__item {
