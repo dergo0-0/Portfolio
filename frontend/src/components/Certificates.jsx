@@ -57,18 +57,20 @@ export default function Certificates() {
               defaultSelected={0}
               onChange={handleChange}
               textColor="rgba(151, 144, 125, 0.3)"
-              activeColor="#e8512c"
+              activeColor="#F97316"
               side="left"
-              fontSize={3.2}
+              fontSize={3.4}
               spacing={1.8}
-              curve={1}
-              tilt={7}
-              blur={2}
-              fade={0.28}
-              minOpacity={0.02}
-              smoothing={220}
+              curve={2}
+              tilt={6}
+              blur={4}
+              fade={0.21}
+              smoothing={350}
               inset={60}
               loop
+              draggable
+              soundUrl={`${import.meta.env.BASE_URL}sounds/click-soft.wav`}
+              soundVolume={0.5}
             />
           </div>
         </Reveal>
