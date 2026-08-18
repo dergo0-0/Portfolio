@@ -84,10 +84,10 @@ body::after {
   height: 200%;
   pointer-events: none;
   z-index: 9000;
-  opacity: 0.15;
+  opacity: 0.12;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
-  animation: grain-shift 0.7s steps(4) infinite;
+  will-change: auto;
 }
 
 /* animated bends background */
@@ -96,14 +96,6 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-}
-
-@keyframes grain-shift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-1.5%, 1%); }
-  50% { transform: translate(1%, -1%); }
-  75% { transform: translate(-0.5%, -1.5%); }
-  100% { transform: translate(0, 0); }
 }
 
 /* ---------- shared ---------- */
@@ -131,7 +123,6 @@ body::after {
 
 .split-text__char {
   display: inline-block;
-  will-change: transform;
 }
 
 .rotating-text__clip {
@@ -191,12 +182,6 @@ body::after {
   display: flex;
   align-items: center;
   gap: 22px;
-}
-
-@keyframes pulse-dot {
-  0% { box-shadow: 0 0 0 0 rgba(232, 81, 44, 0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(232, 81, 44, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(232, 81, 44, 0); }
 }
 
 .lang-toggle {
@@ -283,22 +268,23 @@ body::after {
 .hero-title {
   font-family: var(--font-head);
   font-weight: 400;
-  font-size: clamp(26px, 8vw, 118px);
-  line-height: 1.05;
+  font-size: clamp(24px, 7.4vw, 118px);
+  line-height: 1.12;
   text-transform: uppercase;
   letter-spacing: 0.005em;
   color: var(--paper);
   text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.35);
   transform: rotate(-0.6deg);
   max-width: 1200px;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
   -webkit-font-smoothing: antialiased;
 }
 
 .hero-title__word {
   display: inline-block;
   white-space: pre;
-  will-change: transform;
 }
 
 .hero-title__word--accent {
