@@ -1092,13 +1092,13 @@ body::after {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   background: var(--panel-glass);
   -webkit-backdrop-filter: var(--panel-blur);
   backdrop-filter: var(--panel-blur);
   border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 26px 26px 22px;
+  border-radius: 20px;
+  padding: 32px 32px 28px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transition: opacity 0.22s ease, transform 0.22s ease, border-color 0.25s ease;
 }
@@ -1115,7 +1115,7 @@ body::after {
 .cert-card__top {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 18px;
 }
 
 .cert-card__logo {
@@ -1128,13 +1128,12 @@ body::after {
 
 .cert-card__name {
   font-family: var(--font-head);
-  font-size: clamp(20px, 2.2vw, 26px);
+  font-size: clamp(24px, 3vw, 32px);
   text-transform: uppercase;
   color: var(--paper);
   line-height: 1.15;
-  text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.3);
   font-weight: 500;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .cert-card__sub {
@@ -1142,7 +1141,7 @@ body::after {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--paper-dim);
@@ -1153,8 +1152,8 @@ body::after {
 }
 
 .cert-card__desc {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--paper-dim);
 }
 
